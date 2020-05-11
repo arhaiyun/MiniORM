@@ -44,10 +44,10 @@ public class ORMSession {
                     String colValue = field.get(entity).toString();
                     //6.拼接SQL语句
                     insertSQL1.append(colName).append(",");
-                    insertSQL2.append(",").append(colValue).append("',");
+                    insertSQL2.append("'").append(colValue).append("',");
                 }
                 insertSQL.append(insertSQL1.substring(0, insertSQL1.length() - 1));
-                insertSQL.append(insertSQL2.substring(0, insertSQL2.length() - 1));
+                insertSQL.append(insertSQL2.substring(0, insertSQL2.length() - 1)).append(" );");
                 break;
             }
         }

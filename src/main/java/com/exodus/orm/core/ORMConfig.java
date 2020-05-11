@@ -30,7 +30,7 @@ public class ORMConfig {
     public static List<Mapper> mapperList; // 实体类s映射信息
 
     static {
-        classpath = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+        classpath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         // 针对文件路径进行转码
         try {
             classpath = URLDecoder.decode(classpath, "utf-8");
@@ -54,7 +54,7 @@ public class ORMConfig {
     private Connection getConnection() throws Exception {
         String url = propConfig.get("connection.url");
         String driverClass = propConfig.get("connection.driverClass");
-        String userName = propConfig.get("connection.userName");
+        String userName = propConfig.get("connection.username");
         String password = propConfig.get("connection.password");
         Class.forName(driverClass);
         Connection connection = DriverManager.getConnection(url, userName, password);
