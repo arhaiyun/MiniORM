@@ -65,18 +65,18 @@ public class Dom4jUtil {
      * @return
      */
     public static Map<String, String> elements2Map(Document document) {
-        Element clazzElement = document.getRootElement().element("class");
+        Element classElement = document.getRootElement().element("class");
         Map<String, String> mapping = new HashMap<String, String>();
 
-        Element idElement = clazzElement.element("id");
+        Element idElement = classElement.element("id");
         String idKey = idElement.attribute("name").getValue();
         String idValue = idElement.attribute("column").getValue();
         mapping.put(idKey, idValue);
 
-        List<Element> propElements = clazzElement.elements("property");
+        List<Element> propElements = classElement.elements("property");
         for (Element element : propElements) {
-            String propKey = idElement.attribute("name").getValue();
-            String propValue = idElement.attribute("column").getValue();
+            String propKey = element.attribute("name").getValue();
+            String propValue = element.attribute("column").getValue();
             mapping.put(propKey, propValue);
         }
         return mapping;

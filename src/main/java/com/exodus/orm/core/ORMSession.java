@@ -62,7 +62,7 @@ public class ORMSession {
     //根据主键进行数据删除
     public void delete(Object entity) throws Exception {
         // delete from tableName where id=id_value;
-        StringBuilder delSQL = new StringBuilder("delete from");
+        StringBuilder delSQL = new StringBuilder("delete from ");
         //1.从ORMConfig中获取保存映射信息的集合
         List<Mapper> mapperList = ORMConfig.mapperList;
 
@@ -78,6 +78,7 @@ public class ORMSession {
 
                 //5.获取主键的值
                 Field field = entity.getClass().getDeclaredField(idProps[0].toString());
+                field.setAccessible(true);
                 String idVal = field.get(entity).toString();
 
                 //6.拼接sql
@@ -110,7 +111,7 @@ public class ORMSession {
                 Object[] idColumns = mapper.getIdMapper().values().toArray();
 
                 //5.拼接sql
-                selectSQL.append(idColumns[0].toString()).append(" = ").append(id);
+                selectSQL.append(idColumns[0].toString()).append(" = ").append(id).append(";");
 
                 break;
             }
