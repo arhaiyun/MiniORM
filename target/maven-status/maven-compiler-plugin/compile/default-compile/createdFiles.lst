@@ -1,0 +1,8 @@
+com\exodus\orm\utils\AnnotationUtil.class
+com\exodus\orm\core\ORMConfig.class
+com\exodus\orm\annotation\ORMId.class
+com\exodus\orm\core\ORMSession.class
+com\exodus\orm\annotation\ORMColumn.class
+com\exodus\orm\annotation\ORMTable.class
+com\exodus\orm\core\Mapper.class
+com\exodus\orm\utils\Dom4jUtil.class
