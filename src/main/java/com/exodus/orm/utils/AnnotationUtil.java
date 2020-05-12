@@ -6,6 +6,7 @@ import com.exodus.orm.annotation.ORMTable;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -108,16 +109,18 @@ public class AnnotationUtil {
         Set<String> names = new HashSet<String>();
         String packageFile = packagePath.replace(".", "/");
         String classpath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+
         if (classpath == null) {
             classpath = Thread.currentThread().getContextClassLoader().getResource("/").getPath();
         }
 
         try {
-            classpath = java.net.URLDecoder.decode(classpath, "utf-8");
+            classpath = java.net.URLDecoder.decode(classpath, StandardCharsets.UTF_8);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        // 解析entity package下所有的类文件名
         File dir = new File(classpath + packageFile);
         if (dir.exists()) {
             File[] files = dir.listFiles();

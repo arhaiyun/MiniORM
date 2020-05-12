@@ -55,6 +55,7 @@ public class Dom4jUtil {
             String value = element.getTextTrim();
             propConfig.put(key, value);
         }
+
         return propConfig;
     }
 
@@ -79,6 +80,7 @@ public class Dom4jUtil {
             String propValue = element.attribute("column").getValue();
             mapping.put(propKey, propValue);
         }
+
         return mapping;
     }
 
@@ -115,6 +117,7 @@ public class Dom4jUtil {
             String value = element.attribute(attrName).getValue();
             mappingSet.add(value);
         }
+
         return mappingSet;
     }
 

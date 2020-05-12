@@ -8,7 +8,7 @@ import java.util.Map;
  * @version 1.0
  * @date 2020/5/11 10:17
  * <p>
- * 用于封装和存储映射信息
+ * 用于封装和存储对象与表之间的映射信息
  */
 public class Mapper {
     private String clazzName;

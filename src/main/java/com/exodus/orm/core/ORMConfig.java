@@ -7,6 +7,7 @@ import org.dom4j.Document;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
@@ -32,11 +33,7 @@ public class ORMConfig {
     static {
         classpath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         // 针对文件路径进行转码
-        try {
-            classpath = URLDecoder.decode(classpath, "utf-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        classpath = URLDecoder.decode(classpath, StandardCharsets.UTF_8);
         cfgFile = new File(classpath + "miniORM.cfg.xml");
         if (cfgFile.exists()) {
             // 解析核心配置文件中数据
@@ -54,10 +51,11 @@ public class ORMConfig {
     private Connection getConnection() throws Exception {
         String url = propConfig.get("connection.url");
         String driverClass = propConfig.get("connection.driverClass");
-        String userName = propConfig.get("connection.username");
+        String username = propConfig.get("connection.username");
         String password = propConfig.get("connection.password");
+
         Class.forName(driverClass);
-        Connection connection = DriverManager.getConnection(url, userName, password);
+        Connection connection = DriverManager.getConnection(url, username, password);
         connection.setAutoCommit(true);
 
         return connection;
